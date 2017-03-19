@@ -14,29 +14,8 @@ Without actual data, we can use `sample_gnp` (or `sample_gnm` for the Gaussian n
 
 ```r
 library(sna)
-```
-
-```
-## Warning: package 'sna' was built under R version 3.2.5
-```
-
-```
-## Warning: package 'statnet.common' was built under R version 3.2.5
-```
-
-```
-## Warning: package 'network' was built under R version 3.2.5
-```
-
-```r
 library(igraph)
-```
 
-```
-## Warning: package 'igraph' was built under R version 3.2.5
-```
-
-```r
 g2 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) 
 
 plot(g2)
@@ -44,7 +23,7 @@ plot(g2)
 
 ![](SNA_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
-Next we can use the function `igraph()` to customize even more attributes of the SNA graph: 
+Next we can use the function `igraph()` to customize even more attributes of the SNA graph, be careful as this might get ugly! 
 
 
 ```r
@@ -56,14 +35,13 @@ plot.igraph(g2, vertex.label = V(g2)$name, vertex.size = 40,
 
 ![](SNA_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-or you can use `%>%` with the `set_vertex_attr()` or `set_edge_attr()` etc. functions to achieve the same: 
+or you can use the `%>%` pipes with the `set_vertex_attr()` or `set_edge_attr()` etc. functions to achieve similar results: 
 
 
 ```r
 g3 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) %>% 
   set_vertex_attr("color", value = "red") %>% 
-  set_edge_attr("color", value = "black") %>% 
-  set_vertex_attr("vertex.label.color", value = "black")
+  set_edge_attr("color", value = "black")
 
 plot(g3)
 ```
