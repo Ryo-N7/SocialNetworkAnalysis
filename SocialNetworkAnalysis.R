@@ -116,12 +116,10 @@ g2 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) %>%
   set_vertex_attr("vertex.label.color", value = "red")
 
 plot(g2)
-
-?set_vertex_attr
-edge_attr(g2)
-?sample_gnp
-
 V(g2)
-plot.igraph(g2,vertex.label=V(g2)$name,vertex.size=30,
-            vertex.label.color="yellow", vertex.label.font=2,
-            vertex.color="darkblue",edge.color="black")
+plot.igraph(g2, vertex.label = V(g2)$name, vertex.size = 20,
+            vertex.label.color = "yellow", vertex.label.font = 2,
+            vertex.color = "darkblue", edge.color = "red",
+            vertex.frame.color = "green")
+?igraph.plotting
+# layout = layout.circl() 
