@@ -99,8 +99,31 @@ gnp2 %>%  cliques(., min = 4, max = 6)
 
 # Components: a group of connected network nodes
 
-gnp <- sample_gnp(30, 0.06, directed = FALSE, loops = FALSE)
-plot(gnp)
+set.seed(1)
+# gnp <- sample_gnp(30, 0.06, directed = FALSE, loops = FALSE)
+# plot(gnp)
+
+gnp
+plot.igraph(gnp, vertex.label = V(gnp)$name, vertex.size = 20,
+            vertex.label.color = "black", vertex.label.font = 2,
+            vertex.color = "white", edge.color = "black",
+            vertex.frame.color = "blue")
+
+#  [1]  5-- 6  9--10  2--11 11--14 12--14  7--16  2--17 17--19 10--20  8--21 19--22 17--23  4--25  8--25
+# [15] 19--26  9--28  3--29 10--29 14--30 16--30
+
+
+
+g <- make_empty_graph() %>%
+  add_vertices(3, color = "red") %>%
+  add_vertices(2, color = "green") %>%
+  add_edges(c(1,2, 2,3, 3,4, 4,5))
+g
+V(g)[[]]
+plot(g)
+
+
+
 # Some nodes that don't have connections! 
 components(gnp)
 # $membership: #1 in Component 1, #2 in Component 1, #3 in Component 2,
