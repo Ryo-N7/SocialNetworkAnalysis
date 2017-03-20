@@ -111,7 +111,7 @@ plot.igraph(gnp, vertex.label = V(gnp)$name, vertex.size = 20,
 
 #  [1]  5-- 6  9--10  2--11 11--14 12--14  7--16  2--17 17--19 10--20  8--21 19--22 17--23  4--25  8--25
 # [15] 19--26  9--28  3--29 10--29 14--30 16--30
-
+# Color code components so they look like separate departments/sections/cliques! 
 
 
 g <- make_empty_graph() %>%
