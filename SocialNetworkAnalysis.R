@@ -3,11 +3,14 @@ install.packages("igraph")
 
 library(sna)
 library(igraph)
+?sna
+
 directdata <- read.table("directed.txt")
 indirectdata <- read.table("undirected.txt")
 graph1 <- graph_from_data_frame(indirectdata, directed = FALSE, vertices = NULL)
 plot(graph1)
 
+??g_full
 g_full <- make_full_graph(8, directed = FALSE)
 plot(g_full)
 
@@ -17,16 +20,24 @@ plot(g_ring)
 g_star <- make_star(10, center = 1)
 plot(g_star)
 
+# Erdos-Renyi, g(n,p) model:
+
+?sample_gnp
 g_gnp <- sample_gnp(20, 0.3, directed = FALSE, loops = FALSE)
 plot(g_gnp)
 
+# Erdos-Renyi, g(n,m) model:
+
+?sample_gnm
 g_gnm <- sample_gnm(15, 50, directed = FALSE, loops = FALSE)
 plot(g_gnm)
 
 g_gnm2 <- sample_gnm(15, 25, directed = FALSE, loops = FALSE)
 plot(g_gnm2)
 
-g_gpa <- sample_pa(20, power = 1)
+# Preferential attachment (Barabasi-Albert model): 
+?sample_pa
+g_gpa <- sample_pa(20, power = 1, directed = FALSE)
 plot(g_gpa)
 
 # 
@@ -80,7 +91,7 @@ gnp %>% cliques(., min = 4)
 # 4 cliques with min. of 4 vertices.
 gnp %>% cliques(., min = 4, max = 6)
 
-# If increase prob of any individual link occuring from 0.3 >>> 0.6    : 
+# If increase prob of any individual node/link occuring from 0.3 >>> 0.6    : 
 gnp2 <- sample_gnp(20, 0.5, directed = FALSE, loops = FALSE)
 plot(gnp2)
 gnp2 %>% clique_num()

@@ -13,25 +13,51 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Social Network Analysis (test)
 
-Testing social network analysis with the "sna" and "igraph" packages for R using the g(n p) model for
-constructing the graphs. 
+Testing social network analysis with the "sna" and "igraph" packages for R using the Erdos-Renyi model for constructing the graphs. But first, some simple graphs:
 
-Without actual data, we can use `sample_gnp` (or `sample_gnm` for the Gaussian network model) to create network graphs with randomized data:
-
+Full graph: Every node/vertex has every possible connection.
 ```{r message = FALSE, warning = FALSE}
 library(sna)
 library(igraph)
-
-g2 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) 
-
-plot(g2)
+g_full <- make_full_graph(8, directed = FALSE)
+plot(g_full)
 
 ```
 
-Next we can use the function `igraph()` to customize even more attributes of the SNA graph, be careful as this might get ugly! 
+Ring graph: Graph is circular, where neighboring nodes are connected to each other to form a ring. 
+```{r}
+g_ring <- make_ring(12, directed = FALSE, mutual = FALSE, circular = TRUE)
+plot(g_ring)
+
+```
+
+Star graph: A single central vertex is connected by a singular edge from other vertices.
+```{r}
+g_star <- make_star(10, center = 1)
+plot(g_star)
+
+```
+
+
+Without actual data, we can use `sample_gnp` or `sample_gnm` to create network graphs with randomized data.
+
+"In the G(n, M) model, a graph is chosen uniformly at random from the collection of all graphs which have 'n' nodes and 'M' edges. For example, in the G(3, 2) model, each of the three possible graphs on three vertices and two edges are included with probability 1/3.
+
+In the G(n, p) model, a graph is constructed by connecting nodes randomly. Each edge is included in the graph with probability 'p' independent from every other edge." <https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model>
+
+
+```{r message = FALSE, warning = FALSE}
+
+g1 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) 
+
+plot(g1)
+
+```
+
+Next we can use the function `igraph()` to customize even more attributes of the SNA graph, be careful as things might get ugly! 
 
 ```{r}
-plot.igraph(g2, vertex.label = V(g2)$name, vertex.size = 40,
+plot.igraph(g1, vertex.label = V(g1)$name, vertex.size = 40,
             vertex.label.color = "yellow", vertex.label.font = 2,
             vertex.color = "darkblue", edge.color = "red",
             vertex.frame.color = "green")
@@ -41,11 +67,11 @@ plot.igraph(g2, vertex.label = V(g2)$name, vertex.size = 40,
 or you can use the `%>%` pipes with the `set_vertex_attr()` or `set_edge_attr()` etc. functions to achieve similar results: 
 
 ```{r}
-g3 <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE) %>% 
+g2 <- sample_gnp(30, 0.4, directed = FALSE, loops = FALSE) %>% 
   set_vertex_attr("color", value = "red") %>% 
   set_edge_attr("color", value = "black")
 
-plot(g3)
+plot(g2)
 
 ```
 
@@ -71,8 +97,4 @@ plot(graph2)
 
 ```
 
-
-Yay.
-
-
-
+More on in-depth analysis and measurements of these graphs later!  
