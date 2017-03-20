@@ -99,7 +99,7 @@ gnp2 %>%  cliques(., min = 4, max = 6)
 
 # Components: a group of connected network nodes
 
-gnp <- sample_gnp(30, 0.08, directed = FALSE, loops = FALSE)
+gnp <- sample_gnp(30, 0.06, directed = FALSE, loops = FALSE)
 plot(gnp)
 # Some nodes that don't have connections! 
 components(gnp)
