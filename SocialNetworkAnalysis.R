@@ -122,7 +122,11 @@ g
 V(g)[[]]
 plot(g)
 
-
+g_2 <- make_empty_graph(directed = FALSE) %>%
+  add_vertices(3, color = "red") %>%
+  add_vertices(5, color = "green") %>%
+  add_edges(c(1,2, 2,3, 3,4, 4,5, 2,3, 2,4, 6,7, 5,6))
+plot(g_2)
 
 # Some nodes that don't have connections! 
 components(gnp)
