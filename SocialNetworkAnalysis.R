@@ -125,8 +125,15 @@ plot(g)
 g_2 <- make_empty_graph(directed = FALSE) %>%
   add_vertices(3, color = "red") %>%
   add_vertices(5, color = "green") %>%
-  add_edges(c(1,2, 2,3, 3,4, 4,5, 2,3, 2,4, 6,7, 5,6))
+  add_vertices(4, color = "blue") %>% 
+  add_edges(c(1,2, 2,3, 3,1, 4,5, 2,3, 7,6, 6,7, 5,6, 5,7, 4,7, 2,1, 4,6, 5,4, 11,10, 10,11, 2,8))
 plot(g_2)
+
+plot.igraph(g_2, vertex.label = V(g_2)$name, vertex.size = 20,
+            vertex.label.color = "black", vertex.label.font = 2,
+            edge.color = "black", edge.width = 1.5,
+            vertex.frame.color = "black")
+
 
 # Some nodes that don't have connections! 
 components(gnp)
