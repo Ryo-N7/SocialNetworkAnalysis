@@ -125,8 +125,10 @@ plot(g)
 g_2 <- make_empty_graph(directed = FALSE) %>%
   add_vertices(3, color = "red") %>%
   add_vertices(5, color = "green") %>%
-  add_vertices(4, color = "blue") %>% 
-  add_edges(c(1,2, 2,3, 3,1, 4,5, 2,3, 7,6, 6,7, 5,6, 5,7, 4,7, 2,1, 4,6, 5,4, 11,10, 10,11, 2,8))
+  add_vertices(8, color = "light blue") %>% 
+  add_edges(c(1,2, 2,3, 3,1, 4,5, 2,3, 7,6, 6,7, 5,6, 5,7, 4,7, 2,1, 4,6, 5,4,
+              11,10, 10,11, 12,10, 8,5, 13,12, 9,13, 10,13, 13,10, 11,13, 9,15,
+              12,8, 2,12, 12,2))
 plot(g_2)
 
 plot.igraph(g_2, vertex.label = V(g_2)$name, vertex.size = 20,
@@ -135,6 +137,30 @@ plot.igraph(g_2, vertex.label = V(g_2)$name, vertex.size = 20,
             vertex.frame.color = "black")
 
 
+g_3 <- make_empty_graph(directed = FALSE) %>% 
+  add_vertices(10, color = "red") %>% 
+  add_vertices(15, color = "green") %>% 
+  add_vertices(12, color = "light blue") %>% 
+  add_edges(c(1,2, 1,3, 4,5, 5,6, 1,4, 4,6, 7,10, 6,5, 7,6, 1,6, 20,14,
+              3,5, 11,12, 12,11, 13,11, 11,13, 12,13, 15,14, 16,17, 17,16,
+              18,17, 15,12, 13,15, 8,2, 18,14, 12,18, 15,12, 30,29, 2,6, 2,5,
+              37,34, 35,36, 28,29, 30,31, 31,30, 26,25, 11,25, 13,17, 11,15, 34,26,
+              26,34, 26,37, 21,24, 20,19, 24,20, 19,22, 23,24, 23,14, 20,18, 32,10,
+              32,31, 32,30, 34,35, 36,37, 3,7, 5,32, 5,30, 18,17, 14,15, 1,5, 5,1,
+              1,2, 1,2, 3,1, 3,1, 3,1, 1,3, 1,3, 25,26, 25,26, 25,26, 25,26,
+              26,34, 26,34, 26,34, 26,34, 26,34, 26,34, 19,22, 19,22, 19,22))
+
+plot.igraph(g_3, vertex.size = (V(g_3)$size = degree(g_3)*1.2),
+            edge.color = "black", edge.width = 1.5,
+            vertex.frame.color = "black", vertex.label = NA)
+
+# vertex.label = NA
+tkplot(g_3, vertex.label.dist = 1, layout = layout.circle)
+?tkplot()
+g_3
+edge_attr(g_3)
+?set_edge_attr()
+?add_vertices()
 # Some nodes that don't have connections! 
 components(gnp)
 # $membership: #1 in Component 1, #2 in Component 1, #3 in Component 2,
